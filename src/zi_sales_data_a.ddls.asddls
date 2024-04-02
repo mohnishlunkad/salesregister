@@ -1,0 +1,71 @@
+@AbapCatalog.viewEnhancementCategory: [#NONE]
+@AccessControl.authorizationCheck: #NOT_REQUIRED
+@EndUserText.label: 'Sales Data'
+@Metadata.ignorePropagatedAnnotations: true
+@ObjectModel.usageType:{
+    serviceQuality: #X,
+    sizeCategory: #S,
+    dataClass: #MIXED
+}
+define view entity ZI_SALES_DATA_A
+  as select from ZI_SALES_DATA
+{
+  key BillingDocument,
+  key BillingDocumentItem,
+      BillingDocumentDate,
+      @Semantics.quantity.unitOfMeasure: 'BillingQuantityUnit'
+      BillingQuantity,
+      BillingQuantityUnit,
+      FiscalYear,
+      AccountingDocument,
+      SoldToParty,
+      SoldToPartyName,
+      PayerParty,
+      PayerPartyName,
+      BillToParty,
+      BillToPartyName,
+      CustomerGST,
+      RegionName,
+      CountryName,
+      ShipToParty,
+      ShipToPartyName,
+      TransactionCurrency,
+      IncoTerms,
+      CustomerPaymentTerms,
+      CreatedByUser,
+      PricingDate,
+      OrganizationDivision,
+      Product,
+      ProductName,
+      BillingDocumentType,
+      OBD,
+      OBDDate,
+      SalesOrderNo,
+      SalesOrderDate,
+      HSNSac,
+      ProfitCenter,
+      SupplierGSTIN,
+      PurchaseOrderByCustomer,
+      CGSTRate,
+      CGSTAmount,
+      SGSTRate,
+      SGSTAmount,
+      IGSTRate,
+      IGSTAmount,
+      CGSTAmount + SGSTAmount + IGSTAmount as TotalGST,
+      UnitRate,
+      AdvanceAmount,
+      Retention1Rate,
+      Retention1Amount,
+      Retention2Rate,
+      Retention2Amount,
+      Retention3Rate,
+      Retention3Amount,
+      Retention4Rate,
+      Retention4Amount,
+      GrossAmount,
+      AdvanceAmount + Retention1Amount + Retention2Amount + Retention3Amount + Retention4Amount                 as TotalAdjustment,
+      GrossAmount - (AdvanceAmount + Retention1Amount + Retention2Amount + Retention3Amount + Retention4Amount) as GrossReceivables,
+      Wbs,
+      WbsDescription
+}
