@@ -61,5 +61,7 @@ define root view entity ZC_SALES_DATA_REPORT
       TotalAdjustment,
       GrossReceivables,
       Wbs,
-      WbsDescription
+      WbsDescription,
+      UTRNumber,
+      PaymentDate
 }

@@ -66,5 +66,7 @@ define root view entity ZI_SALES_DATA_REPORT as select from ZI_SALES_DATA_A
     TotalAdjustment,
     GrossReceivables,
     Wbs,
-    WbsDescription
+    WbsDescription,
+    UTRNumber,
+    PaymentDate
 }

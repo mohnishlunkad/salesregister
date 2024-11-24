@@ -52,7 +52,7 @@ define view entity ZI_SALES_DATA_A
       SGSTAmount,
       IGSTRate,
       IGSTAmount,
-      CGSTAmount + SGSTAmount + IGSTAmount as TotalGST,
+      coalesce(CGSTAmount,0) + coalesce(SGSTAmount,0) + coalesce(IGSTAmount,0)                                                                                               as TotalGST,
       UnitRate,
       AdvanceAmount,
       Retention1Rate,
@@ -63,9 +63,14 @@ define view entity ZI_SALES_DATA_A
       Retention3Amount,
       Retention4Rate,
       Retention4Amount,
-      GrossAmount,
-      AdvanceAmount + Retention1Amount + Retention2Amount + Retention3Amount + Retention4Amount                 as TotalAdjustment,
-      GrossAmount - (AdvanceAmount + Retention1Amount + Retention2Amount + Retention3Amount + Retention4Amount) as GrossReceivables,
+      coalesce(CGSTAmount,0) + coalesce(SGSTAmount,0) + coalesce(IGSTAmount,0) + coalesce(NetAmount, 0)                                                                      as GrossAmount,
+      coalesce(AdvanceAmount,0) + coalesce(Retention1Amount,0) + coalesce(Retention2Amount,0) + coalesce(Retention3Amount,0) + coalesce(Retention4Amount,0)                  as TotalAdjustment,
+    //  GrossAmount - (coalesce(AdvanceAmount,0) + coalesce(Retention1Amount,0) + coalesce(Retention2Amount,0) + coalesce(Retention3Amount,0) + coalesce(Retention4Amount,0) ) as GrossReceivables,
+      
+      (coalesce(CGSTAmount,0) + coalesce(SGSTAmount,0) + coalesce(IGSTAmount,0) + coalesce(NetAmount, 0)  ) - (coalesce(AdvanceAmount,0) + coalesce(Retention1Amount,0) + coalesce(Retention2Amount,0) + coalesce(Retention3Amount,0) + coalesce(Retention4Amount,0) ) as GrossReceivables,
       Wbs,
-      WbsDescription
+      WbsDescription,
+      PaymentDocument,
+      UTRNumber,
+      PaymentDate
 }

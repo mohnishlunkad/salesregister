@@ -15,7 +15,8 @@ annotate view ZC_SALES_DATA_REPORT with
 
   @Search.defaultSearchElement: true
   @UI: {  lineItem:       [ { position: 10 } ],
-     identification: [ { position: 10 } ]
+     identification: [ { position: 10 } ],
+     selectionField: [{ position : 10 }]
    }
   @EndUserText.label: 'Billing Document No'
   BillingDocument;
@@ -107,7 +108,7 @@ annotate view ZC_SALES_DATA_REPORT with
   @UI: {  lineItem:       [ { position: 160 } ],
      identification: [ { position: 160 } ]
    }
-  @EndUserText.label: 'Ship To Party Name'
+  @EndUserText.label: 'Ship To Party'
   ShipToParty;
 
   @UI: {  lineItem:       [ { position: 170 } ],
@@ -338,5 +339,23 @@ annotate view ZC_SALES_DATA_REPORT with
    }
   @EndUserText.label: 'Gross Receivables'
   GrossReceivables;
+
+  @UI: {  lineItem:       [ { position: 540 } ],
+     identification: [ { position: 540 } ]
+   }
+  @EndUserText.label: 'UTR No'
+  UTRNumber;
+
+  @UI: {  lineItem:       [ { position: 550 } ],
+     identification: [ { position: 550 } ]
+   }
+  @EndUserText.label: 'Payment Date'
+  PaymentDate;
+
+  @UI: {  lineItem:       [ { position: 560 } ],
+     identification: [ { position: 560 } ]
+   }
+  @EndUserText.label: 'WBS'
+  WbsDescription;
 
 }
